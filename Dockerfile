@@ -1,5 +1,7 @@
 FROM gristlabs/grist:latest
 
+LABEL io.ithute.test-release="1"
+
 EXPOSE 8484
 
 HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=10 \
