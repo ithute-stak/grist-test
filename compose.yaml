@@ -1,0 +1,11 @@
+services:
+  grist:
+    image: grist-test:bootstrap
+    restart: unless-stopped
+    ports:
+      - "8484:8484"
+    volumes:
+      - grist_test_data:/persist
+
+volumes:
+  grist_test_data:
