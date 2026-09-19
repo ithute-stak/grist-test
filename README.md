@@ -16,9 +16,21 @@ Disposable deployment target for validating the Custom GitHub / Ithute GitHub lo
 ## Runtime
 
 - Service: `grist`
-- Port: `8484`
+- Container port: `8484`
+- VPS bind: `127.0.0.1:8484`
 - Persistent data: `grist_test_data:/persist`
 - Suggested VPS directory: `/opt/apps/grist-test`
-- Suggested health URL: `http://<VPS-IP>:8484/`
+
+For the current control-plane version, use a local SSH tunnel for the health check instead of exposing Grist publicly, for example:
+
+```bash
+ssh -N -L 18484:127.0.0.1:8484 -i ~/.ssh/<deploy-key> <ssh-user>@<vps-host>
+```
+
+Then configure the deployment target health URL as:
+
+```text
+http://127.0.0.1:18484/
+```
 
 The VPS should never clone or build this repository during deployment.
